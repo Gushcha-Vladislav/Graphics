@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -22,10 +22,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+LIBS += -lglu32 -lopengl32
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    paints.cpp \
+    particle.cpp \
+    snow.cpp \
+    fire.cpp \
+    smoke.cpp \
+    tree.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    paints.h \
+    particle.h \
+    snow.h \
+    fire.h \
+    smoke.h \
+    tree.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    files.qrc
