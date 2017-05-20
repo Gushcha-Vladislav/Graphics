@@ -19,7 +19,7 @@ public:
     GLuint m_colAttr;
     GLuint m_matrix;
     //функции
-    particle();
+    particle();   //сделать класс абстрактным и виртуальным
 };
 
 #endif // PARTICLE_H
