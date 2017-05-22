@@ -6,12 +6,17 @@ class smoke: public particle
 {
 private:
     float color[3];
+    float dz;
     float r=20.0f;
     float height;
-    int senterX=0,senterY=0;
+    float senterX=0,senterY=0;
+    GLuint mPointAttr;
 public:
-    smoke(QOpenGLShaderProgram *);
+    smoke();
+    void setParamShader(QOpenGLShaderProgram*,GLuint,GLuint,GLuint);
     void init();
+    void draw();
+    void animation();
 };
 
 #endif // SMOKE_H

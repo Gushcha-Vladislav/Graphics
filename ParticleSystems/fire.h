@@ -6,12 +6,18 @@ class fire: public particle
 {
 private:
     float color[3];
+    float dz;
     float r=20.0f;
     float height;
-    int senterX=0,senterY=0;
+    float senterX=0,senterY=0;
+    GLuint mPointAttr;
 public:
-    fire(QOpenGLShaderProgram*);
+    fire();
+
+    void setParamShader(QOpenGLShaderProgram*,GLuint,GLuint,GLuint);
     void init();
+    void draw();
+    void animation();
 };
 
 #endif // FIRE_H

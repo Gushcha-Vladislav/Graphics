@@ -2,5 +2,5 @@
 
 particle::particle()
 {
-
+    initializeOpenGLFunctions();
 }

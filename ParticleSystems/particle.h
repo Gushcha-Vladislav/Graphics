@@ -8,16 +8,14 @@ class particle:public QOpenGLFunctions
 {
 public:
     //переменные
-    int x=0,y=0,z=0; // координаты частицы
-    int speed=0; //скорость частицы
+    float x=0.0f,y=0.0f,z=0.0f; // точки опорв для частицы
+    float speed=0.0f; //скорость частицы
     float blur=1.0f; //прозрачность
-    int gravity=0.0f; //сила гравитации
-    int top=100,down=-100,right=100,left=-100; //постоянные константы поля
+    float gravity=0.0f; //сила гравитации
+    float top=100.0f,down=-100.0f,right=100.0f,left=-100.0f; //постоянные константы поля
     QOpenGLShaderProgram *mProgram;
-    QMatrix4x4 matrix;
-    GLuint m_posAttr;
-    GLuint m_colAttr;
-    GLuint m_matrix;
+    GLuint mPosAttr;
+    GLuint mColAttr;
     //функции
     particle();   //сделать класс абстрактным и виртуальным
 };
