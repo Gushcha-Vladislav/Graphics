@@ -4,6 +4,8 @@
 #include <QGLWidget>
 #include "snow.h"
 #include "fire.h"
+#include "smoke.h"
+#include "tree.h"
 #include "QTimer"
 
 class paints : public QGLWidget, public QOpenGLFunctions{
@@ -17,11 +19,16 @@ private:
     GLuint m_pointAttr;
     snow * Snow;
     fire * Fire;
-    int sumSnow=500;
-    int sumFire=300;
+    //  tree * Tree;
+    smoke *Smoke;
+    int sumSnow=2000;
+    int sumTree=3;
+    int sumSmoke=3000;
+    int sumFire=2000;
     int step=0;
-    int sumStep=10;
-    int sumStepFire=6;
+    int sumStepSnow=40;
+    int sumStepSmoke=60;
+    int sumStepFire=40;
     int pred[3]={0,190,0};
     QTimer *timer;
 

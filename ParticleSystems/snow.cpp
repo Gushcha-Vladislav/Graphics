@@ -39,6 +39,7 @@ void snow::animation(){
 }
 
 void snow::draw(){
+    glEnable(GL_POINT_SMOOTH);
     mProgram->setUniformValue( mPointAttr, float(size));
     mProgram->setUniformValue(mColAttr,color[0], color[1], color[2],blur);
     GLfloat vect[3];
@@ -49,6 +50,8 @@ void snow::draw(){
     glEnableVertexAttribArray( mPosAttr );
     glDrawArrays( GL_POINTS, 0, 1);
     glDisableVertexAttribArray(  mPosAttr );
+    glDisable(GL_POINT_SMOOTH);
     animation();
+
 
 }

@@ -10,8 +10,8 @@ void fire::init(){
     color[0]=1.0f;
     color[1]=1.0f;
     color[2]=0.0f;
-    int dummyR=rand()%20; //придумать как сюда передавать R
-    int dummyT=rand()%360;
+    double dummyR=rand()%20; //придумать как сюда передавать R
+    double dummyT=rand()%360;
     x=dummyR*qCos(dummyT);
     y=dummyR*qSin(dummyT);
     z=down+20;

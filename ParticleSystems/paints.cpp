@@ -60,11 +60,18 @@ void paints::resizeGL(int width, int height)
     glViewport( 0, 0, width, height );
 }
 void paints::initElementCard(){
-
+//    Tree=new tree [sumTree];
     Snow=new snow[sumSnow];
     Fire=new fire [sumFire];
+    Smoke=new smoke [sumSmoke];
+//    for(int i=0;i<sumTree;i++){
+//        Tree[i].setParamShader(m_program,m_posAttr,m_colAttr);
+//    }
     for(int i=0;i<sumSnow;i++){
         Snow[i].setParamShader(m_program,m_posAttr,m_colAttr, m_pointAttr);
+    }
+    for(int i=0;i<sumSmoke;i++){
+        Smoke[i].setParamShader(m_program,m_posAttr,m_colAttr, m_pointAttr);
     }
     for(int i=0;i<sumFire;i++){
         Fire[i].setParamShader(m_program,m_posAttr,m_colAttr, m_pointAttr);
@@ -93,11 +100,17 @@ void paints::draw(){
                                                 glDrawArrays( GL_LINES, 0, 6);
                                                 glDisableVertexAttribArray(  m_posAttr );
                                             }
-    for(int i=0;i<step*sumStep;i++){
+//    for(int i=0;i<sumTree;i++){
+//        Tree[i].draw();
+//    }
+    for(int i=0;i<step*sumStepSnow;i++){
         Snow[i].draw();
     }
     for(int i=0;i<step*sumStepFire;i++){
        Fire[i].draw();
+     }
+    for(int i=0;i<step*sumStepSmoke;i++){
+       Smoke[i].draw();
      }
     m_program->release();
 }
