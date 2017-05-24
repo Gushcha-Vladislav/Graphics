@@ -1,5 +1,4 @@
 #include "paints.h"
-
 paints::paints(QWidget *parent):QGLWidget(parent)
 {
 
@@ -32,6 +31,17 @@ void paints::initializeGL()
       m_matrix = m_program->uniformLocation( "matrix" );
       matrix.ortho(-100.0f,100.0f,-100.0f,100.0f,-100.0f,100.0f);
       //matrix.rotate(pred[1],0,1,1);
+      a.setX(0.0);
+      a.setY(0.0f);
+      a.setZ(0.0f);
+      b.setX(0.0f);
+      b.setY(0.0f);
+      b.setZ(0.0f);
+      c.setX(0.0f);
+      c.setY(0.0f);
+      c.setZ(0.0f);
+      matrix.lookAt(a,b,c);
+      matrix.frustum(-0.01,0.01,-0.01,0.01,1,100);
       m_posAttr = m_program->attributeLocation( "posAttr" );
       m_colAttr = m_program->uniformLocation( "colAttr" );
       m_pointAttr=m_program->uniformLocation( "pointAttr" );
@@ -48,7 +58,6 @@ void paints::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
     if ( !m_program->bind() )
         return;
-
     draw();
 }
 
@@ -81,14 +90,11 @@ void paints::initElementCard(){
 
 void paints::draw(){
 
-    m_program->setUniformValue( m_matrix, matrix );
+
+
+     m_program->setUniformValue( m_matrix, matrix );
     m_program->setUniformValue( m_pointAttr, 1.0f );
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(10,10,10,
-              0.0,0.0,0.0,
-              0.0,10.0,1.0);
     Earth->draw();
     for(int i=0;i<sumTree;i++){
         Tree[i].draw();

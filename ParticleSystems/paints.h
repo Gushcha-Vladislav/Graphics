@@ -8,9 +8,7 @@
 #include "tree.h"
 #include "earth.h"
 #include "QTimer"
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glaux.h>
+#include "QVector3D"
 
 class paints : public QGLWidget, public QOpenGLFunctions{
      Q_OBJECT
@@ -35,6 +33,9 @@ private:
     int sumStepSmoke=60;
     int sumStepFire=40;
     int pred[3]={0,190,0};
+    QVector3D a;
+    QVector3D b;
+    QVector3D c;
     QTimer *timer;
 
 
