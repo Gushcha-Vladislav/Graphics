@@ -41,7 +41,7 @@ void paints::initializeGL()
       c.setY(0.0f);
       c.setZ(0.0f);
       matrix.lookAt(a,b,c);
-      matrix.frustum(-0.01,0.01,-0.01,0.01,1,100);
+      //matrix.frustum(-0.01,0.01,-0.01,0.01,1,100);
       m_posAttr = m_program->attributeLocation( "posAttr" );
       m_colAttr = m_program->uniformLocation( "colAttr" );
       m_pointAttr=m_program->uniformLocation( "pointAttr" );
