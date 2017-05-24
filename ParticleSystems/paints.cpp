@@ -20,6 +20,7 @@ void paints::start(){
 void paints::initializeGL()
 {
       initializeOpenGLFunctions();
+
       glClearColor(0.0f, 0.0f, 0.2f,1.0f);
       m_program = new QOpenGLShaderProgram( this );
       m_program->addShaderFromSourceFile( QOpenGLShader::Vertex, ":/Shaders/vShader.glsl" );
@@ -30,16 +31,16 @@ void paints::initializeGL()
       }
       m_matrix = m_program->uniformLocation( "matrix" );
       matrix.ortho(-100.0f,100.0f,-100.0f,100.0f,-100.0f,100.0f);
-      matrix.rotate(pred[1],0,1,1);
+      //matrix.rotate(pred[1],0,1,1);
       m_posAttr = m_program->attributeLocation( "posAttr" );
       m_colAttr = m_program->uniformLocation( "colAttr" );
       m_pointAttr=m_program->uniformLocation( "pointAttr" );
       initElementCard();
       glEnable(GL_PROGRAM_POINT_SIZE);
-      glEnable(GL_POINT_SMOOTH);
-      glEnable(GL_BLEND);
+      glEnable(GL_BLEND);     
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+      glEnable( GL_ALPHA_TEST );
+      glEnable(GL_POINT_SMOOTH);
 }
 
 void paints::paintGL()
@@ -47,10 +48,7 @@ void paints::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
     if ( !m_program->bind() )
         return;
-//    glLoadIdentity();
-//    gluLookAt(10,10,10,
-//              0.0,0.0,0.0,
-//              0.0,10,1);
+
     draw();
 }
 
@@ -60,13 +58,15 @@ void paints::resizeGL(int width, int height)
     glViewport( 0, 0, width, height );
 }
 void paints::initElementCard(){
-//    Tree=new tree [sumTree];
+    Tree=new tree [sumTree];
     Snow=new snow[sumSnow];
     Fire=new fire [sumFire];
     Smoke=new smoke [sumSmoke];
-//    for(int i=0;i<sumTree;i++){
-//        Tree[i].setParamShader(m_program,m_posAttr,m_colAttr);
-//    }
+    Earth= new earth;
+    for(int i=0;i<sumTree;i++){
+        Tree[i].setParamShader(m_program,m_posAttr,m_colAttr,m_matrix,matrix);
+    }
+    Earth->setParamShader(m_program,m_posAttr,m_colAttr);
     for(int i=0;i<sumSnow;i++){
         Snow[i].setParamShader(m_program,m_posAttr,m_colAttr, m_pointAttr);
     }
@@ -84,25 +84,16 @@ void paints::draw(){
     m_program->setUniformValue( m_matrix, matrix );
     m_program->setUniformValue( m_pointAttr, 1.0f );
 
-                                            {
-                                                m_program->setUniformValue(m_colAttr,1.0f, 1.0f, 1.0f,1.0f);
-                                                GLfloat vect[]={
-                                                        -100.0f,0.0f,0.0f,
-                                                         100.0f,0.0f,0.0f,
-                                                         0.0f,-100.0f,0.0f,
-                                                         0.0f,100.0f,0.0f,
-                                                         0.0f,0.0f,-100.0f,
-                                                         0.0f,0.0f,100.0f
-
-                                                    };
-                                                glVertexAttribPointer( m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vect );
-                                                glEnableVertexAttribArray( m_posAttr );
-                                                glDrawArrays( GL_LINES, 0, 6);
-                                                glDisableVertexAttribArray(  m_posAttr );
-                                            }
-//    for(int i=0;i<sumTree;i++){
-//        Tree[i].draw();
-//    }
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(10,10,10,
+              0.0,0.0,0.0,
+              0.0,10.0,1.0);
+    Earth->draw();
+    for(int i=0;i<sumTree;i++){
+        Tree[i].draw();
+    }
+    m_program->setUniformValue( m_matrix, matrix );
     for(int i=0;i<step*sumStepSnow;i++){
         Snow[i].draw();
     }
@@ -112,6 +103,8 @@ void paints::draw(){
     for(int i=0;i<step*sumStepSmoke;i++){
        Smoke[i].draw();
      }
+
+
     m_program->release();
 }
 

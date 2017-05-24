@@ -6,7 +6,11 @@
 #include "fire.h"
 #include "smoke.h"
 #include "tree.h"
+#include "earth.h"
 #include "QTimer"
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glaux.h>
 
 class paints : public QGLWidget, public QOpenGLFunctions{
      Q_OBJECT
@@ -19,10 +23,11 @@ private:
     GLuint m_pointAttr;
     snow * Snow;
     fire * Fire;
-    //  tree * Tree;
+    tree * Tree;
     smoke *Smoke;
+    earth * Earth;
     int sumSnow=2000;
-    int sumTree=3;
+    int sumTree=1;
     int sumSmoke=3000;
     int sumFire=2000;
     int step=0;
