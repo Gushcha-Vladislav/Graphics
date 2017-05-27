@@ -32,7 +32,7 @@ private:
     int sumStepSnow=40;
     int sumStepSmoke=60;
     int sumStepFire=40;
-    int pred[3]={0,190,0};
+    int pred=0;
     QVector3D a;
     QVector3D b;
     QVector3D c;
@@ -49,8 +49,6 @@ public:
 
 
 private slots:
-    void setX (int);
-    void setY(int);
     void setZ(int);
     void start();
 

@@ -32,8 +32,7 @@ SOURCES += main.cpp\
     fire.cpp \
     smoke.cpp \
     tree.cpp \
-    earth.cpp \
-    light.cpp
+    earth.cpp
 
 HEADERS  += mainwindow.h \
     paints.h \
@@ -42,8 +41,7 @@ HEADERS  += mainwindow.h \
     fire.h \
     smoke.h \
     tree.h \
-    earth.h \
-    light.h
+    earth.h
 
 FORMS    += mainwindow.ui
 
