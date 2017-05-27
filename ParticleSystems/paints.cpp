@@ -30,18 +30,17 @@ void paints::initializeGL()
       }
       m_matrix = m_program->uniformLocation( "matrix" );
       matrix.ortho(-100.0f,100.0f,-100.0f,100.0f,-100.0f,100.0f);
-      //matrix.rotate(pred[1],0,1,1);
-//      a.setX(0.0);
-//      a.setY(0.0f);
-//      a.setZ(0.0f);
-//      b.setX(0.0f);
-//      b.setY(0.0f);
-//      b.setZ(0.0f);
-//      c.setX(0.0f);
-//      c.setY(0.0f);
-//      c.setZ(0.0f);
-//      matrix.lookAt(a,b,c);
-      //matrix.frustum(-0.01,0.01,-0.01,0.01,1,100);
+      a.setX(30.0f);
+      a.setY(30.0f);
+      a.setZ(-70.0f);
+      b.setX(0.0f);
+      b.setY(0.0f);
+      b.setZ(-100.0f);
+      c.setX(-5.0f);
+      c.setY(-5.0f);
+      c.setZ(-1.0f);
+      matrix.lookAt(a,b,c);
+      matrix.rotate(90,0,0,1);
       m_posAttr = m_program->attributeLocation( "posAttr" );
       m_colAttr = m_program->uniformLocation( "colAttr" );
       m_pointAttr=m_program->uniformLocation( "pointAttr" );
@@ -49,7 +48,6 @@ void paints::initializeGL()
       glEnable(GL_PROGRAM_POINT_SIZE);
       glEnable(GL_BLEND);     
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      glEnable( GL_ALPHA_TEST );
       glEnable(GL_POINT_SMOOTH);
 }
 
@@ -112,17 +110,10 @@ void paints::draw(){
     m_program->release();
 }
 
-void paints::setX(int j){
-    matrix.rotate(j-pred[0],1.0f,0.0f,0.0f);
-    pred[0]=j;
-}
 
-void paints::setY(int j){
-    matrix.rotate(j-pred[1],0.0f,1.0f,0.0f);
-    pred[1]=j;
-}
+
 
 void paints::setZ(int j){
-    matrix.rotate(j-pred[2],0.0f,0.0f,1.0f);
-    pred[2]=j;
+    matrix.rotate(j-pred,0.0f,0.0f,1.0f);
+    pred=j;
 }

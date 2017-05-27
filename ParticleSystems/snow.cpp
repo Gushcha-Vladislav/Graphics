@@ -31,7 +31,7 @@ void snow::setParamShader(QOpenGLShaderProgram* program,GLuint posAttr,GLuint co
 void snow::animation(){
     step++;
     z-=gravity;
-    if(z<=down){
+    if(z<=20*qSin((x+M_PI/2)/30+M_PI/2)*qCos((y-M_PI/2)/30-M_PI)-80){
         z=top;
     }
     dx=R*qCos(qDegreesToRadians(double(speed*step+fi)))+x;

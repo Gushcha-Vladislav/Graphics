@@ -36,15 +36,6 @@ void earth::draw(){
             glEnableVertexAttribArray( mPosAttr );
             glDrawArrays( GL_QUADS, 0, 4);
             glDisableVertexAttribArray(  mPosAttr );
-//            vect[11]-=2;
-//            vect[8]-=2;
-//            vect[5]-=2;
-//            vect[2]-=2;
-//            mProgram->setUniformValue(mColAttr,0.1f,0.3f,0.0f,1.0f);
-//            glVertexAttribPointer( mPosAttr, 3, GL_FLOAT, GL_FALSE, 0, vect );
-//            glEnableVertexAttribArray( mPosAttr );
-//            glDrawArrays( GL_QUADS, 0, 4);
-//            glDisableVertexAttribArray(  mPosAttr );
 
         }
     }

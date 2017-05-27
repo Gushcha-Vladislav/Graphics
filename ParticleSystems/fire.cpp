@@ -49,3 +49,4 @@ void fire::draw(){
     animation();
 
 }
+
